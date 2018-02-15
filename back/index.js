@@ -1,25 +1,44 @@
-let firstNumber = process.argv[2]
-let operator = process.argv[3]
-let secondNumber = process.argv[4]
+// const firstNumber = parseInt(process.argv[2]);
+// const operator = process.argv[3];
+// const secondNumber = parseInt(process.argv[4]);
 
 // if (operator = '+') {
 //     let add = (firstNumber, secondNumber) =>  firstNumber + secondNumber;
 //     console.log(add(firstNumber, secondNumber));
 // }
+// console.log("test1");
 
-if (operator) {
-    let calculate = (firstNumber, secondNumber, operator) => {
-        console.log("test");
-        let result;
-        switch (operator) {
-            case '+':
-                result = firstNumber + secondNumber;
-                break;
-            case '-':
-                result = firstNumber - secondNumber;
-                break;
-        }
-        return result;
-        console.log(result);
-    }
-};
+// if (operator) {
+//   let calculate = (firstNumber, secondNumber, operator) => {
+//     let result;
+//     switch (operator) {
+//       case "+":
+//         result = firstNumber + secondNumber;
+//         break;
+//       case "-":
+//         result = firstNumber - secondNumber;
+//         break;
+//       case "x":
+//         result = firstNumber * secondNumber;
+//         break;
+//       case "/":
+//         result = firstNumber / secondNumber;
+//         break;
+//     case '^':
+//         result = firstNumber ^ secondNumber;
+//         break;
+//     }
+//     // console.log(result); 
+//     return result;
+//   };
+//   calculate(firstNumber, secondNumber, operator);
+// }
+let test = process.argv;
+
+console.log(test.splice(0, 2));
+console.log(eval((test).join('')));
+
+// console.log(eval(test.splice(0,2).join('')));
+
+
+ 
