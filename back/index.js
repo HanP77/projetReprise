@@ -28,17 +28,15 @@
 //         result = firstNumber ^ secondNumber;
 //         break;
 //     }
-//     // console.log(result); 
+//     // console.log(result);
 //     return result;
 //   };
 //   calculate(firstNumber, secondNumber, operator);
 // }
+
+
 let test = process.argv;
 
-console.log(test.splice(0, 2));
+test.splice(0, 2);
+
 console.log(eval((test).join('')));
-
-// console.log(eval(test.splice(0,2).join('')));
-
-
- 

@@ -69,15 +69,15 @@ gulp.task('sass', function() {
         .pipe(babel({
           presets: ['es2015']
 }))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build/js'));
  });
 
   gulp.task('dev', ['browserSync', 'sass', 'minify-css' , 'minify-js'], function() {
     gulp.watch('src/sass/*.scss', ['sass']);
     gulp.watch('dist/css/*.css', ['minify-css']);
-    gulp.watch('src/js/*.js', ['minify-js']);
+    gulp.watch('dist/js/*.js', ['minify-js']);
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('*.html', browserSync.reload);
-    // gulp.watch('js/**/*.js', browserSync.reload);
+    gulp.watch('src/js/*.js', browserSync.reload);
   });
   
