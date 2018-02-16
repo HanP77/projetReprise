@@ -35,8 +35,13 @@
 // }
 
 
+// let test = process.argv;
+
+// console.log(test.splice(0, 2));
+
+// console.log(eval((test).join('')));
+
 let test = process.argv;
 
-test.splice(0, 2);
-
+console.log(test.splice(0, 2));
 console.log(eval((test).join('')));
