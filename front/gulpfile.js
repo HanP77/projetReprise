@@ -12,99 +12,99 @@ const concat = require("gulp-concat");
 
 gulp.task('html', function() {
   return gulp.src('./src/**/**/*.html')
-      .pipe(gulp.dest('./dist/'))
-      .pipe(browserSync.reload({
-          stream: true
-      }));
+  .pipe(gulp.dest('./dist/'))
+  .pipe(browserSync.reload({
+    stream: true
+  }));
 });
 
 gulp.task("sass", function() {
   return gulp
-    .src("src/sass/style.scss")
-    .pipe(sass())
-    .pipe(gulp.dest("dist/css"))
-    .pipe(
-      browserSync.reload({
-        stream: true
-      })
+  .src("src/sass/style.scss")
+  .pipe(sass())
+  .pipe(gulp.dest("dist/css"))
+  .pipe(
+    browserSync.reload({
+      stream: true
+    })
     );
 });
 
 gulp.task("minify-css", ["sass"], function() {
   return gulp
-    .src("dist/css/style.css")
-    .pipe(
-      cleanCSS({
-        compatibility: "ie8"
-      })
+  .src("dist/css/style.css")
+  .pipe(
+    cleanCSS({
+      compatibility: "ie8"
+    })
     )
-    .pipe(
-      rename({
-        suffix: ".min"
-      })
+  .pipe(
+    rename({
+      suffix: ".min"
+    })
     )
-    .pipe(gulp.dest("dist/css"))
-    .pipe(
-      browserSync.reload({
-        stream: true
-      })
+  .pipe(gulp.dest("dist/css"))
+  .pipe(
+    browserSync.reload({
+      stream: true
+    })
     );
 });
 
 gulp.task("minify-js", function() {
   return gulp
-    .src("src/**/*.js")
-    .pipe(concat('all.js'))
-    .pipe(
-      rename({
-        suffix: ".min"
-      })
+  .src("src/**/*.js")
+  .pipe(concat('all.js'))
+  .pipe(
+    rename({
+      suffix: ".min"
+    })
     )
-    .pipe(gulp.dest("dist/js"))
-    .pipe(
-      browserSync.reload({
-        stream: true
-      })
+  .pipe(gulp.dest("dist/js"))
+  .pipe(
+    browserSync.reload({
+      stream: true
+    })
     );
 });
 
 gulp.task("copy", function() {
   gulp
-    .src([
-      "node_modules/bootstrap/dist/**/*",
-      "!**/npm.js",
-      "!**/bootstrap-theme.*",
-      "!**/*.map"
+  .src([
+    "node_modules/bootstrap/dist/**/*",
+    "!**/npm.js",
+    "!**/bootstrap-theme.*",
+    "!**/*.map"
     ])
-    .pipe(gulp.dest("dist/vendor/bootstrap"));
-    
+  .pipe(gulp.dest("dist/vendor/bootstrap"));
+
 
   gulp
-    .src([
-      "node_modules/jquery/dist/jquery.js",
-      "node_modules/jquery/dist/jquery.min.js"
+  .src([
+    "node_modules/jquery/dist/jquery.js",
+    "node_modules/jquery/dist/jquery.min.js"
     ])
-    .pipe(gulp.dest("dist/vendor/jquery"));
-    
+  .pipe(gulp.dest("dist/vendor/jquery"));
+
 
   gulp
-    .src(["node_modules/jquery.easing/*.js"])
-    .pipe(gulp.dest("dist/vendor/jquery-easing"));
+  .src(["node_modules/jquery.easing/*.js"])
+  .pipe(gulp.dest("dist/vendor/jquery-easing"));
 
   gulp
-    .src(["node_modules/magnific-popup/dist/*"])
-    .pipe(gulp.dest("dist/vendor/magnific-popup"));
+  .src(["node_modules/magnific-popup/dist/*"])
+  .pipe(gulp.dest("dist/vendor/magnific-popup"));
 
   gulp
-    .src([
-      "node_modules/font-awesome/**",
-      "!node_modules/font-awesome/**/*.map",
-      "!node_modules/font-awesome/.npmignore",
-      "!node_modules/font-awesome/*.txt",
-      "!node_modules/font-awesome/*.md",
-      "!node_modules/font-awesome/*.json"
+  .src([
+    "node_modules/font-awesome/**",
+    "!node_modules/font-awesome/**/*.map",
+    "!node_modules/font-awesome/.npmignore",
+    "!node_modules/font-awesome/*.txt",
+    "!node_modules/font-awesome/*.md",
+    "!node_modules/font-awesome/*.json"
     ])
-    .pipe(gulp.dest("dist/vendor/font-awesome"));
+  .pipe(gulp.dest("dist/vendor/font-awesome"));
 });
 
 // Default task
@@ -120,24 +120,25 @@ gulp.task("browserSync", function() {
 
 gulp.task("es6", () => {
   return gulp
-    .src("./babel/es6.js")
-    .pipe(
-      babel({
-        presets: ["es2015"]
-      })
+  .src("./babel/es6.js")
+  .pipe(
+    babel({
+      presets: ["es2015"]
+    })
     )
-    .pipe(
-      rename({
-        basename: "es5"
-      })
+  .pipe(
+    rename({
+      basename: "es5"
+    })
     )
-    .pipe(gulp.dest("./babel/build/js"));
+  .pipe(gulp.dest("./babel/build/js"));
 });
 
 gulp.task(
   "dev",
   ["browserSync", "html","sass", "minify-css", "minify-js"],
   function() {
+    gulp.watch("src/**/**/*.html", ["html"]);
     gulp.watch("src/sass/*.scss", ["sass"]);
     gulp.watch("dist/css/*.css", ["minify-css"]);
     gulp.watch("dist/js/*.js", ["minify-js"]);
@@ -146,4 +147,4 @@ gulp.task(
     gulp.watch("dist/css/*.css", browserSync.reload);
     gulp.watch("dist/js/*js", browserSync.reload);
   }
-);
+  );
